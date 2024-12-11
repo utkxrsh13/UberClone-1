@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext,useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import {UserDataContext} from "../context/UserContext.jsx";
+import { UserDataContext } from "../context/UserContext.jsx";
 
 const UserSignup = () => {
   const [email, setEmail] = useState("");
@@ -12,7 +12,7 @@ const UserSignup = () => {
 
   const navigate = useNavigate();
 
-  const {user, setUser} = React.useContext(UserDataContext)
+  const { user, setUser } = useContext(UserDataContext);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -29,11 +29,11 @@ const UserSignup = () => {
       `${import.meta.env.VITE_BASE_URL}/users/register`,
       newUser
     );
-    if(response.status == 201){
-      const data = response.data
-      setUser(data.user)
-
-      navigate('/home')
+    if (response.status == 201) {
+      const data = response.data;
+      setUser(data.user);
+      localStorage.setItem('token', data.token)
+      navigate("/home");
     }
 
     // console.log(userData);
@@ -48,7 +48,7 @@ const UserSignup = () => {
       <div>
         <img
           className="w-16 mb-3"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_jn2qOHnlX5UNHlIIHMBXg70W1UjlJia3S01jhb6qvvIcMkQcq84D_C-MeDflKDWHRIY&usqp=CAU"
+          src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Uber_logo_2018.png"
           alt="Uber logo"
         />
         <form
