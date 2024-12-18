@@ -20,27 +20,27 @@ const Home = () => {
       if (panelOpen) {
         gsap.to(panelRef.current, {
           height: "70%",
-          padding:24,
-          opacity:1
+          padding: 24,
+          opacity: 1,
         });
-        gsap.to(panelCloseRef.current,{
-          opacity:1
-        })
+        gsap.to(panelCloseRef.current, {
+          opacity: 1,
+        });
       } else {
         gsap.to(panelRef.current, {
           height: "0%",
-          opacity:0
+          opacity: 0,
         });
-        gsap.to(panelCloseRef.current,{
-          opacity:0
-        })
+        gsap.to(panelCloseRef.current, {
+          opacity: 0,
+        });
       }
     },
     [panelOpen]
   );
 
   return (
-    <div className="h-screen relative">
+    <div className="h-screen relative overflow-hidden">
       <img
         className="absolute w-16 left-5 top-5"
         src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Uber_logo_2018.png"
@@ -57,9 +57,13 @@ const Home = () => {
 
       <div className="flex flex-col justify-end h-screen absolute top-0 w-full">
         <div className="h-[30%] p-5 bg-white relative">
-          <h5 ref={panelCloseRef} onClick={() => {
-            setPanelOpen(false)
-          }} className="absolute opacity-0 right-6 top-4 text-2xl">
+          <h5
+            ref={panelCloseRef}
+            onClick={() => {
+              setPanelOpen(false);
+            }}
+            className="absolute opacity-0 right-6 top-4 text-2xl"
+          >
             <i className="ri-arrow-down-wide-fill"></i>
           </h5>
           <h4 className="text-2xl font-semibold">Find a trip</h4>
@@ -99,7 +103,70 @@ const Home = () => {
         </div>
 
         <div ref={panelRef} className="bg-white h-0">
-          <LocationSearchPanel/>
+          <LocationSearchPanel />
+        </div>
+      </div>
+
+      <div className="fixed w-full z-10 bg-white bottom-0 px-3 py-6">
+        <div className="border-2 border-black rounded-xl p-3 w-full mb-2 flex items-center justify-between">
+          <img
+            className="h-12"
+            src="https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,h_552,w_552/v1555367310/assets/30/51e602-10bb-4e65-b122-e394d80a9c47/original/Final_UberX.png"
+            alt=""
+          />
+          <div className="w-1/2">
+            <h4 className="font-medium text-lg">
+              UberGo{" "}
+              <span>
+                <i className="ri-user-3-fill"></i>4
+              </span>
+            </h4>
+            <h5 className="font-medium text-sm">2 mins away</h5>
+            <p className="font-normal text-xs text-gray-600">
+              Affordable, comapact rides
+            </p>
+          </div>
+          <h2 className="text-xl font-semibold">₹193.20</h2>
+        </div>
+        <div className="border-2 border-black rounded-xl p-3 w-full mb-2 flex items-center justify-between">
+          <img
+            className="h-12"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0dvpmpkBxRwzt84h3R46p43rK3mZWrhAvXw&s"
+            alt=""
+          />
+          <div className="w-1/2">
+            <h4 className="font-medium text-lg">
+              UberGo{" "}
+              <span>
+                <i className="ri-user-3-fill"></i>4
+              </span>
+            </h4>
+            <h5 className="font-medium text-sm">2 mins away</h5>
+            <p className="font-normal text-xs text-gray-600">
+              Affordable, comapact rides
+            </p>
+          </div>
+          <h2 className="text-xl font-semibold">₹193.20</h2>
+        </div>
+        <div className="border-2 border-black rounded-xl p-3 w-full mb-2 flex items-center justify-between">
+          <img
+            className="h-12"
+            src="https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,h_368,w_552/v1649231091/assets/2c/7fa194-c954-49b2-9c6d-a3b8601370f5/original/Uber_Moto_Orange_312x208_pixels_Mobile.png"
+            alt=""
+          />
+          <div className="w-1/2">
+            <h4 className="font-medium text-lg">
+              UberGo{" "}
+              <span>
+                <i className="ri-user-3-fill"></i>4
+              </span>
+            </h4>
+            <h5 className="font-medium text-sm">2 mins away</h5>
+            <p className="font-normal text-xs text-gray-600">
+              Affordable, comapact rides
+            </p>
+          </div>
+          <h2 className="text-xl font-semibold">₹193.20</h2>
         </div>
       </div>
     </div>
