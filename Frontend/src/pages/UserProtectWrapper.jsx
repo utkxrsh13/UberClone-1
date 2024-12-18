@@ -1,12 +1,13 @@
-import React, { useContext, useEffect } from "react";
-import { UserDataContext } from "../context/UserContext";
+import React, { useContext, useEffect, useState } from "react";
+import  {UserDataContext}  from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-export const UserProtectWrapper = ({ childer }) => {
+const UserProtectWrapper = ({ children }) => {
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
   const { user, setUser } = useContext(UserDataContext);
-  const [isloading, setIsloading] = useState(false);
+  const [isloading, setIsloading] = useState(true);
   useEffect(() => {
     if (!token) {
       navigate("/login");
@@ -16,14 +17,20 @@ export const UserProtectWrapper = ({ childer }) => {
         headers: {
           Authorization: `Bearer ${token}`,
         },
+        
       })
       .then((response) => {
+        console.log("API Response:", response);
         if (response.status === 200) {
-          setUser(response.data.captain);
+          console.log("API Response:", response);
+          setUser(response.data);
           setIsloading(false);
+        } else {
+          console.warn("Unexpected status code:", response.status);
         }
       })
       .catch((err) => {
+        console.error("API Error:", err);
         localStorage.removeItem("token");
         navigate("/login");
       });
@@ -31,5 +38,6 @@ export const UserProtectWrapper = ({ childer }) => {
   if (isloading) {
     return <div>Loading....</div>;
   }
-  return <>{childer}</>;
+  return <>{children}</>;
 };
+export default UserProtectWrapper;

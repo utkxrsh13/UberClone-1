@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { CaptainDataContext } from "../context/CaptainContext";
 import axios from "axios";
 
-export const CaptainProtectWrapper = ({ childer }) => {
+const CaptainProtectWrapper = ({ childer }) => {
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
   const { captain, setCaptain } = useContext(CaptainDataContext);
-  const [ isloading, setIsloading ] = useState(false);
+  const [ isloading, setIsloading ] = useState(true);
 
   useEffect(() => {
     if (!token) {
@@ -36,3 +36,5 @@ export const CaptainProtectWrapper = ({ childer }) => {
   }
   return <>{childer}</>;
 };
+
+export default CaptainProtectWrapper
