@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import "remixicon/fonts/remixicon.css";
+import LocationSearchPanel from "../components/LocationSearchPanel";
 
 const Home = () => {
   const [pickup, setPickup] = useState("");
@@ -19,6 +20,7 @@ const Home = () => {
       if (panelOpen) {
         gsap.to(panelRef.current, {
           height: "70%",
+          padding:24,
           opacity:1
         });
         gsap.to(panelCloseRef.current,{
@@ -96,7 +98,9 @@ const Home = () => {
           </form>
         </div>
 
-        <div ref={panelRef} className="bg-red-500 h-0 opacity-0"></div>
+        <div ref={panelRef} className="bg-white h-0">
+          <LocationSearchPanel/>
+        </div>
       </div>
     </div>
   );
