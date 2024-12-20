@@ -42,13 +42,20 @@ const Home = () => {
     [panelOpen]
   );
 
-  useGSAP(function () {
-    if (vehiclePanel) {
-      gsap.to(vehiclePanelRef.current, {
-        transform: "translate(0)",
-      });
-    }
-  });
+  useGSAP(
+    function () {
+      if (vehiclePanel) {
+        gsap.to(vehiclePanelRef.current, {
+          transform: "translateY(0)",
+        });
+      } else {
+        gsap.to(vehiclePanelRef.current, {
+          transform: "translateY(100%)",
+        });
+      }
+    },
+    [vehiclePanel]
+  );
 
   return (
     <div className="h-screen relative overflow-hidden">
@@ -115,7 +122,7 @@ const Home = () => {
 
         <div ref={panelRef} className="bg-white h-0">
           <LocationSearchPanel
-            vehiclePanel={vehiclePanel}
+            setPanelOpen={setPanelOpen}
             setVehiclePanel={setVehiclePanel}
           />
         </div>
@@ -125,7 +132,10 @@ const Home = () => {
         ref={vehiclePanelRef}
         className="fixed w-full z-10 bg-white bottom-0 translate-y-full px-3 py-6"
       >
-        <div className="border-2 active:border-black bg-gray-200 rounded-xl p-3 w-full mb-2 flex items-center justify-between">
+        <h5 onClick={()=>{
+          setVehiclePanel(false);
+        }} className="px-2 w-[93%] text-center absolute top-0 "><i className="text-2xl text-gray-400 ri-arrow-down-wide-fill"></i></h5>
+        <div className="border-2 active:border-black bg-gray-200 rounded-xl p-2 w-full mb-2 flex items-center justify-between">
           <img
             className="h-12"
             src="https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,h_552,w_552/v1555367310/assets/30/51e602-10bb-4e65-b122-e394d80a9c47/original/Final_UberX.png"
