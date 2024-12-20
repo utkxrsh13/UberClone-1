@@ -9,8 +9,9 @@ const Home = () => {
   const [destination, setDestination] = useState("");
   const [panelOpen, setPanelOpen] = useState(false);
   const panelRef = useRef(null);
+  const vehiclePanelRef = useRef(null);
   const panelCloseRef = useRef(null);
-  const [vehiclePanel, setVehiclePanel] = useState(false)
+  const [vehiclePanel, setVehiclePanel] = useState(false);
 
   const submitHnadler = (e) => {
     e.preventdefault();
@@ -30,7 +31,7 @@ const Home = () => {
       } else {
         gsap.to(panelRef.current, {
           height: "0%",
-          padding:0,
+          padding: 0,
           // opacity: 0,
         });
         gsap.to(panelCloseRef.current, {
@@ -40,6 +41,14 @@ const Home = () => {
     },
     [panelOpen]
   );
+
+  useGSAP(function () {
+    if (vehiclePanel) {
+      gsap.to(vehiclePanelRef.current, {
+        transform: "translate(0)",
+      });
+    }
+  });
 
   return (
     <div className="h-screen relative overflow-hidden">
@@ -105,11 +114,17 @@ const Home = () => {
         </div>
 
         <div ref={panelRef} className="bg-white h-0">
-          <LocationSearchPanel />
+          <LocationSearchPanel
+            vehiclePanel={vehiclePanel}
+            setVehiclePanel={setVehiclePanel}
+          />
         </div>
       </div>
 
-      <div className="fixed w-full z-10 bg-white bottom-0 translate-y-full px-3 py-6">
+      <div
+        ref={vehiclePanelRef}
+        className="fixed w-full z-10 bg-white bottom-0 translate-y-full px-3 py-6"
+      >
         <div className="border-2 active:border-black bg-gray-200 rounded-xl p-3 w-full mb-2 flex items-center justify-between">
           <img
             className="h-12"
