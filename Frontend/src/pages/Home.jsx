@@ -10,6 +10,7 @@ const Home = () => {
   const [panelOpen, setPanelOpen] = useState(false);
   const panelRef = useRef(null);
   const panelCloseRef = useRef(null);
+  const [vehiclePanel, setVehiclePanel] = useState(false)
 
   const submitHnadler = (e) => {
     e.preventdefault();
