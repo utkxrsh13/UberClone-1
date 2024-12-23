@@ -1,9 +1,9 @@
 import React from 'react'
 
-const onfirmedVehicle = () => {
+const ConfirmedVehicle = () => {
   return (
     <div>onfirmedVehicle</div>
   )
 }
 
-export default onfirmedVehicle
+export default ConfirmedVehicle
