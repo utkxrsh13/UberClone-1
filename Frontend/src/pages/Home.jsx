@@ -150,7 +150,7 @@ const Home = () => {
         ref={vehiclePanelRef}
         className="fixed w-full z-10 bg-white bottom-0 translate-y-full px-3 py-6"
       >
-        <VehiclePanel setVehiclePanel={setVehiclePanel}/>
+        <VehiclePanel setConfirmRidePanel={setConfirmRidePanel} setVehiclePanel={setVehiclePanel}/>
       </div>
       <div
         ref={confirmRidePanelRef}
